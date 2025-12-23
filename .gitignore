@@ -1,0 +1,11 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Audio (user-provided)
+sounds/*.mp3
+sounds/*.wav
+sounds/*.ogg
+
+# Zip builds
+*.zip
