@@ -1,0 +1,90 @@
+#soulsOverlayRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  display: none;
+}
+
+/* FULLSCREEN dark transparent film + vignette */
+#soulsOverlayBackdrop {
+  position: fixed;
+  inset: 0;
+
+  /* Base dark film */
+  background-color: rgba(0, 0, 0, 0.55);
+
+  /* Vignette */
+  background-image:
+    radial-gradient(ellipse at center,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,0.55) 55%,
+      rgba(0,0,0,0.90) 100%);
+
+  opacity: 0;
+}
+
+#soulsOverlayText {
+  position: fixed;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(56px, 8vw, 128px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+
+  /* If you add your own licensed font, name it SoulsFont */
+  font-family: "SoulsFont", "Times New Roman", serif;
+
+  background: linear-gradient(#ff3b2e, #b30000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.65))
+          drop-shadow(0 0 12px rgba(180,0,0,0.55))
+          drop-shadow(0 0 28px rgba(255,0,0,0.25));
+
+  opacity: 0;
+  white-space: pre-wrap;
+  line-height: 1.05;
+}
+
+#soulsOverlayGrain {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.02),
+      rgba(255,255,255,0.02) 1px,
+      rgba(0,0,0,0.02) 2px,
+      rgba(0,0,0,0.02) 3px
+    );
+}
+
+@keyframes soulsFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes soulsTextIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.985); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes soulsFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.souls-show #soulsOverlayBackdrop { animation: soulsFadeIn 200ms ease-out forwards; }
+.souls-show #soulsOverlayGrain    { animation: soulsFadeIn 200ms ease-out forwards; }
+.souls-show #soulsOverlayText     { animation: soulsTextIn 260ms ease-out forwards; }
+
+.souls-hide #soulsOverlayBackdrop { animation: soulsFadeOut 220ms ease-in forwards; }
+.souls-hide #soulsOverlayGrain    { animation: soulsFadeOut 220ms ease-in forwards; }
+.souls-hide #soulsOverlayText     { animation: soulsFadeOut 220ms ease-in forwards; }

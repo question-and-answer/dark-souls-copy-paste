@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Souls Copy/Paste Overlay — Options</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; max-width: 920px; }
+      textarea { width: 100%; min-height: 140px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      label { display: block; margin: 14px 0 6px; font-weight: 700; }
+      input[type="number"] { width: 160px; }
+      input[type="range"] { width: 280px; }
+      .row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+      .row > div { flex: 1; min-width: 280px; }
+      button { padding: 10px 14px; cursor: pointer; }
+      .hint { color: #555; font-size: 13px; line-height: 1.4; }
+      .ok { color: #0a7a2f; font-weight: 800; }
+      code { background: #f4f4f4; padding: 2px 6px; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>Souls Copy/Paste Overlay — Options</h1>
+    <p class="hint">
+      Triggers on <b>Ctrl/Cmd + C</b> and <b>Ctrl/Cmd + V</b> on any page. Rapid repeats bundle into combos like <code>COPIED ×3</code>.
+      <br/>Sound file should be inside the extension folder, default: <code>sounds/souls_chime.mp3</code>.
+    </p>
+
+    <div class="row">
+      <div>
+        <label for="durationMs">Base display duration (ms)</label>
+        <input id="durationMs" type="number" min="200" step="50" />
+        <p class="hint">How long the overlay stays for a single copy/paste.</p>
+      </div>
+
+      <div>
+        <label for="comboExtendMs">Extra time per combo step (ms)</label>
+        <input id="comboExtendMs" type="number" min="0" step="50" />
+        <p class="hint">If you copy 5 times quickly, it stays longer.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="comboWindowMs">Combo window (ms)</label>
+        <input id="comboWindowMs" type="number" min="100" step="50" />
+        <p class="hint">How fast repeats must be to count as the same burst.</p>
+      </div>
+
+      <div>
+        <label for="maxCombo">Max combo shown</label>
+        <input id="maxCombo" type="number" min="2" step="1" />
+        <p class="hint">Caps the displayed ×N (still keeps extending time).</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Volume: <span id="volLabel"></span></label>
+        <input id="volume" type="range" min="0" max="1" step="0.01" />
+      </div>
+
+      <div>
+        <label for="soundFile">Sound file path</label>
+        <input id="soundFile" style="width:100%;" />
+      </div>
+    </div>
+
+    <label>
+      <input id="alsoListenClipboardEvents" type="checkbox" />
+      Also listen to actual clipboard events (copy/paste)
+    </label>
+    <p class="hint">Optional. Some sites restrict paste events; keydown is already supported.</p>
+
+    <label for="copyPhrases">Ctrl/Cmd + C phrases (one per line)</label>
+    <textarea id="copyPhrases"></textarea>
+
+    <label for="pastePhrases">Ctrl/Cmd + V phrases (one per line)</label>
+    <textarea id="pastePhrases"></textarea>
+
+    <div class="row" style="margin-top: 16px;">
+      <button id="save">Save</button>
+      <span id="status" class="hint"></span>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
