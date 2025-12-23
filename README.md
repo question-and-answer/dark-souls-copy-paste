@@ -6,7 +6,7 @@ dramatic red text, sound effects, and combo chaining.
 
 > Because copying text should feel dangerous.
 
-![Demo](docs/demo.gif)
+![Demo](docs/souls-copy-paste-preview.gif)
 
 ---
 
