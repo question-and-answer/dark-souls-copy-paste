@@ -42,21 +42,12 @@ To enable sound playback:
 1. Create the folder if it doesn’t exist:
 sounds/
 
-csharp
-Copy code
-
-2. Add your own sound file, for example:
+2. Add your own sound file:
 sounds/souls_chime.mp3
-
-css
-Copy code
 
 3. Open the extension’s **Options** page in Chrome and make sure the
 sound file path matches:
 sounds/souls_chime.mp3
-
-yaml
-Copy code
 
 4. Reload the extension from `chrome://extensions`
 
