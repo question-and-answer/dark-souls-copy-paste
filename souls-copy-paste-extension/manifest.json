@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Souls Copy/Paste Overlay",
+  "version": "1.2.0",
+  "description": "Fullscreen Souls-style overlay + synced sound on Ctrl/Cmd+C and Ctrl/Cmd+V (bundles rapid repeats).",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["sounds/*", "fonts/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
